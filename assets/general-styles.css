@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu");
+@import url("https://use.fontawesome.com/releases/v5.0.8/css/all.css");
+body {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: normal;
+    background-color: #1E1E1E;
+    color: #F2F2F2;
+}
+a, a:visited {
+    color: #bbbbbb;
+}
