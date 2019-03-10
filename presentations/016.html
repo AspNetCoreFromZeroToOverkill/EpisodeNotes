@@ -1,0 +1,53 @@
+<div class="slides">
+	<section data-markdown>
+		# Episode 016
+		## Authentication with Identity and Razor Pages
+		ASP.NET Core: From 0 to overkill
+	</section>
+	<section data-markdown>
+		## The authentication service
+		- Standalone application
+		- Centralizes authentication logic
+		- Multiple applications - like web, mobile and desktop - can simply delegate authentication to it
+			- We're not going to use it, but it's good to know we could
+		- OpenID Connect plus OAuth 2.0 provider
+		- Upon successful authentication, a token will be provided for the client applications to make API calls
+	</section>
+	<section data-markdown>
+		## Tools/technologies we'll use
+		- ASP.NET Core Identity
+		- Razor Pages
+		- Entity Framework Core
+		- PostgreSQL
+		- IdentityServer4 (next episodes)
+	</section>
+	<section data-markdown>
+		## Main implementation options
+		1. **The easiest way** - create new application with Identity pre-configured		
+		2. **Another easy way** - create empty application and scaffold the Identity bits		
+		3. **A little more work** - build it ourselves, but using Identity		
+		4. **A lot more work** - build it from scratch (and more prone to errors)		
+		Most of the times, maybe option 2 is the way to go, but as we're exploring and learning, I'll go with 3, creating another application with the scaffolded Identity code to use as guidance. 
+	</section>
+	<section data-markdown>
+		## In this episode...
+		- Create new application with Identity pre-configured, explore what we get
+		- New empty application and then scaffold Identity, explore what we get and use as guidance
+	</section>
+	<section data-markdown>
+			## ... in this episode
+			- New empty application, start building on Identity
+				- (copy & paste will happen 🙂)
+				- `DbContext` + migrations
+				- Startup
+					- Identity bits
+					- MVC bits
+				- Registration page
+				- Login page
+				- Logout page	
+				- Account settings page
+	</section>
+	<section data-markdown>
+		# Coding time!
+	</section>
+</div>
