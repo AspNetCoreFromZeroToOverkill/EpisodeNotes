@@ -1,0 +1,91 @@
+<div class="slides">
+	<section data-markdown>
+# Episode 021
+## Integrating IdentityServer4 
+## Part 1: Overview
+ASP.NET Core: From 0 to overkill
+	</section>
+	<section data-markdown>
+## In the previous episodes
+- We independently developed some components
+	- Group management service
+	- Frontend single page application
+	- Authentication service
+	- Backend for frontend
+	</section>
+	<section data-markdown>
+## Starting with this episode
+- We'll get all components working together
+- No "live" coding, as this is a more complex topic and would end up in the videos being too long
+- Integrate IdentityServer4 plus OpenID Connect and OAuth 2.0
+	</section>
+	<section data-markdown>
+## In this episode
+- Overview of the application architecture
+- Authentication flow
+- The OpenId Connect flow that'll be used
+	</section>
+	<section data-markdown>
+## The usual plugs...
+- If these videos are being useful
+	- Like
+	- Share
+	- Leave feedback
+	</section>
+	<section data-markdown>
+# Go!
+	</section>
+	<section data-transition="slide none">
+		<div style="display: flex;">
+			<div style="flex: 65%;">
+				<img src="/assets/episode021/e021-architecture-overview.jpg">
+			</div>
+			<div style="flex: 35%;" class="fragment" data-fragment-index="1">
+				1. Requests to get the SPA static files
+			</div>
+		</div>
+	</section>
+	<section data-transition="none">
+		<div style="display: flex;">
+			<div style="flex: 65%;">
+				<img src="/assets/episode021/e021-architecture-overview.jpg">
+			</div>
+			<div style="flex: 35%;">
+					2. Mostly API requests made by the SPA. Authenticated by cookies. Also passing a cross site request forgery token along.
+			</div>
+		</div>
+	</section>
+	<section data-transition="none">
+		<div style="display: flex;">
+			<div style="flex: 65%;">
+				<img src="/assets/episode021/e021-architecture-overview.jpg">
+			</div>
+			<div style="flex: 35%;">
+				3. Requests made during user authentication, interacting with the auth service directly or through OpenId connect front-channel redirects.
+			</div>
+		</div>
+	</section>
+	<section data-transition="none">
+		<div style="display: flex;">
+			<div style="flex: 65%;">
+				<img src="/assets/episode021/e021-architecture-overview.jpg">
+			</div>
+			<div style="flex: 35%;">
+				4. API requests made by the BFF. Authenticated with an access token (JWT).
+			</div>
+		</div>
+	</section>
+	<section data-transition="none">
+		<div style="display: flex;">
+			<div style="flex: 65%;">
+				<img src="/assets/episode021/e021-architecture-overview.jpg">
+			</div>
+			<div style="flex: 35%;">
+				5. Auth back-channel communication (get user info, obtain/refresh access token).
+			</div>
+		</div>
+	</section>
+	<section>
+		<img src="/assets/episode021/e021-oidc-code-flow.jpg">
+	</section>
+</div>
