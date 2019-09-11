@@ -1,0 +1,76 @@
+<div class="slides">
+	<section>
+		<h1>Episode 029</h1>
+		<h2>Simplifying the BFF with ProxyKit</h2>
+		<p>ASP.NET Core: From 0 to overkill</p>
+	</section>
+	<section>
+		<h2>What we have so far</h2>
+		<ul>
+			<li>A stable (yet overkill) base infrastructure</li>
+			<li>A very basic application in terms of features</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Next steps</h2>
+		<ul>
+			<li>Get back to implementing application features</li>
+		</ul>
+	</section>
+	<section>
+		<h2>But before</h2>
+		<ul>
+			<li>The way we implemented the BFF in episode 20 will be a pain to maintain
+				<ul>
+					<li>We're basically manually proxying requests to the backing APIs (Group Management only so far)
+					</li>
+					<li>Any time we need to change something in the APIs, we need to adjust the code in the BFF</li>
+					<li>This is useful when we want to create customized requests/responses for the specific frontend,
+						but that's not always the case</li>
+					<li>We did it like that originally to play with the <code>HttpClient</code>, but it's time to
+						simplify</li>
+				</ul>
+			</li>
+
+		</ul>
+	</section>
+	<section>
+		<h2>In this episode</h2>
+		<ul>
+			<li>Introduce <code>ProxyKit</code> to the BFF, to simplify integration with backing APIs
+				<ul>
+					<li>Any request targeting a backing API will be automatically proxied to it</li>
+					<li>This move requires some adjustments, as we move from being totally MVC bound
+						<ul>
+							<li>Authentication enforcement must move from being based on MVC filters to more general ASP.NET Core middlewares</li>
+							<li>Same for anti-forgery token validation</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>Very quick look at ProxyKit vs Ocelot</li>
+		</ul>
+	</section>
+	<section>
+		<h2>The usual plugs...</h2>
+		<ul>
+			<li>If these videos are being useful
+				<ul>
+					<li>Like</li>
+					<li>Share</li>
+					<li>Leave feedback</li>
+				</ul>
+			</li>
+			<li>More stuff at:
+				<ul>
+					<li>Blog: <a href="https://blog.codingmilitia.com">blog.codingmilitia.com</a></li>
+					<li>Twitter: <a href="https://twitter.com/joaofbantunes">@joaofbantunes</a></li>
+					<li>For alternative contacts, visit the blog or <a href="https://antunes.dev">antunes.dev</a></li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h1>Go!</h1>
+	</section>
+</div>
