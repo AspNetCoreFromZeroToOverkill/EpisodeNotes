@@ -1,16 +1,25 @@
 <div class="slides">
 	<section>
 		<h1>Episode 038</h1>
-		<h2>More explicit domain error handling and less exceptions with Either and Error types</h2>
+		<h2>More explicit domain error handling and fewer exceptions with Either and Error types</h2>
 		<p>ASP.NET Core: From 0 to overkill</p>
 	</section>
 	<section>
 		<h2>In this episode</h2>
 		<ul>
-			<li>Avoid using exceptions for domain logic
+			<li>Avoid using exceptions for domain logic:
 				<ul>
-					<li>Creating a robust Error type</li>
-					<li>Error type as a tagged union</li>
+					<li>Make domain error handling explicit</li>
+					<li>Keep exceptions for exceptional situations</li>
+				</ul>
+			</li>
+			<li>To achieve this:
+				<ul>
+					<li>Creating a robust Error type
+						<ul>
+							<li>Error type as a tagged union</li>
+						</ul>
+					</li>
 					<li>The Either type</li>
 					<li>Building on the Either type</li>
 					<li>Bringing it all together</li>
