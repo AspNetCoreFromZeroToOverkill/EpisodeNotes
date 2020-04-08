@@ -1,0 +1,85 @@
+<div class="slides">
+	<section>
+		<h1>Episode 040</h1>
+		<h2>Event-driven integration #1</h2>
+		<h2>Intro to the transactional outbox pattern</h2>
+		<p>ASP.NET Core: From 0 to overkill</p>
+	</section>
+	<section>
+		<h2>In this episode</h2>
+		<ul>
+			<li>The most obvious event publishing approach</li>
+			<li>The transactional outbox pattern</li>
+			<li>Next steps</li>
+		</ul>
+	</section>
+	<section>
+		<h2>The usual plugs...</h2>
+		<ul>
+			<li>If these videos are being useful
+				<ul>
+					<li>Like</li>
+					<li>Share</li>
+					<li>Leave feedback</li>
+				</ul>
+			</li>
+			<li>More stuff at:
+				<ul>
+					<li>Blog: <a href="https://blog.codingmilitia.com">blog.codingmilitia.com</a></li>
+					<li>Twitter: <a href="https://twitter.com/joaofbantunes">@joaofbantunes</a></li>
+					<li>Twitch: <a href="https://twitch.tv/joaofbantunes">@joaofbantunes</a> (stream archive in <a
+							href="https://youtube.com/codingmilitia">YouTube</a>)</li>
+					<li>For alternative contacts, visit the blog or <a href="https://antunes.dev">antunes.dev</a></li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h1>Go!</h1>
+	</section>
+	<section>
+		<h2>The most obvious event publishing approach</h2>
+		<ol>
+			<li>Register user, as in, add the new user to the database</li>
+			<li>If added successfully, publish a <code>UserRegisteredEvent</code> to the event bus</li>
+		</ol>
+	</section>
+	<section>
+		<h1><code>Register.cshtml.cs</code></h1>
+	</section>
+	<section>
+		<h2>The problem</h2>
+		<img src="/assets/episode040/e040-fail-to-publish-event.png">
+	</section>
+	<section>
+		<h2>The transactional outbox pattern</h2>
+		<ul>
+			<li>Persist the domain specific changes as well as the intention to publish an event in the same transaction
+			</li>
+			<li>Ensures at-least-once delivery</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Possible transactional outbox implementation</h2>
+		<img src="/assets/episode040/e040-outbox-pattern.png">
+	</section>
+	<section>
+		<h2>Drawbacks</h2>
+		<ul>
+			<li>Extra complexity</li>
+			<li>Helps us achieve at-least-once delivery, not exactly-once
+				<ul>
+					<li>Meaning the subscribers need to be prepared to receive repeated events</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Next steps</h2>
+		<ul>
+			<li>How/when to create the events based on what goes on in the auth service</li>
+			<li>Store the events in the outbox</li>
+			<li>Publish the events stored in the outbox</li>
+		</ul>
+	</section>
+</div>
