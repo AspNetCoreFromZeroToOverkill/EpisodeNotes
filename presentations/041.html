@@ -1,6 +1,6 @@
 <div class="slides">
 	<section>
-		<h1>Episode 040</h1>
+		<h1>Episode 041</h1>
 		<h2>Event-driven integration #2</h2>
 		<h2>Inferring events from EF Core changes</h2>
 		<p>ASP.NET Core: From 0 to overkill</p>
@@ -8,15 +8,17 @@
 	<section>
 		<h2>In this episode</h2>
 		<ul>
-			<li>TODO</li>
+			<li>Where to put the event creation and storage logic</li>
+			<li>Overriding EF Core SaveChanges</li>
+			<li>Inferring events from the change tracker</li>
 		</ul>
 	</section>
 	<section>
 		<h2>Quick reminder</h2>
 		<ul>
 			<li>Many of the problems we're looking into can be solved by existing libraries</li>
-			<li>Normally, using these libraries is recommended over doing things manually</li>
-			<li>Some good choices are:
+			<li>Consider if doing things manually is actually needed</li>
+			<li>Some options are:
 				<ul>
 					<li>MassTransit - <a href="https://masstransit-project.com/">https://masstransit-project.com/</a></li>
 					<li>NServiceBus - <a href="https://particular.net/nservicebus">https://particular.net/nservicebus</a></li>
@@ -52,9 +54,5 @@
 	</section>
 	<section>
 		<h1>Go!</h1>
-	</section>
-	<section>
-		<h2>TODO</h2>
-		
 	</section>
 </div>
