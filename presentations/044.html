@@ -1,0 +1,231 @@
+<div class="slides">
+	<section>
+		<h1>Episode 044</h1>
+		<h2>Event-driven integration #5</h2>
+		<h2>Quick intro to Apache Kafka</h2>
+		<p>ASP.NET Core: From 0 to overkill</p>
+	</section>
+	<section>
+		<h2>In this episode</h2>
+		<ul>
+			<li>Why Kafka?</li>
+			<li>In a nutshell</li>
+			<li>Main concepts</li>
+			<li>Versus traditional queuing systems</li>
+		</ul>
+	</section>
+	<section>
+		<h2>The usual plugs...</h2>
+		<ul>
+			<li>If these videos are being useful
+				<ul>
+					<li>Like</li>
+					<li>Share</li>
+					<li>Leave feedback</li>
+				</ul>
+			</li>
+			<li>More stuff at:
+				<ul>
+					<li>Blog: <a href="https://blog.codingmilitia.com">blog.codingmilitia.com</a></li>
+					<li>Twitter: <a href="https://twitter.com/joaofbantunes">@joaofbantunes</a></li>
+					<li>For alternative contacts, visit the blog or <a href="https://antunes.dev">antunes.dev</a></li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h1>Go!</h1>
+		<p>(sorry, no code today 👨‍💻)</p>
+	</section>
+	<section>
+		<h2>Why Kafka?</h2>
+		<p>TLDR: I wanted to play with it 🙃</p>
+	</section>
+	<section>
+		<h1>In a nutshell</h1>
+	</section>
+	<section>
+		<h2>In a nutshell</h2>
+		<blockquote cite="https://kafka.apache.org/intro" style="width: 100%;">
+			<p><strong>Kafka® is a distributed streaming platform. What exactly does that mean?</strong></p>
+			<p>A streaming platform has three key capabilities:</p>
+			<ul>
+				<li>Publish and subscribe to streams of records, similar to a message queue or enterprise messaging
+					system.
+				</li>
+				<li>Store streams of records in a fault-tolerant durable way.</li>
+				<li>Process streams of records as they occur.</li>
+			</ul>
+			<p>...</p>
+		</blockquote>
+		<p>Taken from <a href="https://kafka.apache.org/intro">https://kafka.apache.org/intro</a></p>
+	</section>
+	<section>
+		<h2>In a nutshell</h2>
+		<blockquote cite="https://kafka.apache.org/intro" style="width: 100%;">
+			<p>...</p>
+			<p>Kafka is generally used for two broad classes of applications:</p>
+			<ul>
+				<li>Building real-time streaming data pipelines that reliably get data between systems or applications
+				</li>
+				<li>Building real-time streaming applications that transform or react to the streams of data</li>
+			</ul>
+		</blockquote>
+		<p>Taken from <a href="https://kafka.apache.org/intro">https://kafka.apache.org/intro</a></p>
+	</section>
+	<section>
+		<h1>Main concepts</h1>
+	</section>
+	<section>
+		<h2>Main concepts</h2>
+		<ul>
+			<li>Records</li>
+			<li>Topics & partitions</li>
+			<li>Producers</li>
+			<li>Consumers & consumer groups</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Main concepts - Records</h2>
+		<ul>
+			<li>What we store in Kafka - in other systems we would call them messages</li>
+			<li>Comprised of a key, value and timestamp</li>
+			<li>Value contains the payload to store
+				<ul>
+					<li>Format is irrelevant to Kafka</li>
+					<ul>
+						<li>XML</li>
+						<li>JSON</li>
+						<li>Apache Avro</li>
+						<li>Protocol Buffers (protobuf)</li>
+						<li>...</li>
+					</ul>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Main concepts - Topics & partitions</h2>
+		<ul>
+			<li>A topic is the logical representation of a stream of related records</li>
+			<li>Topics are composed of one or more partitions</li>
+			<li>Records are stored in partitions
+				<ul>
+					<li>Partitions act like append-only logs, adding new records at the end</li>
+					<li>Each partition is an ordered, immutable sequence of records</li>
+					<li>When added to the partition, records can be identified by an offset</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Main concepts - Topics & partitions</h2>
+		<img src="/assets/episode044/044-0-topics-and-partitions.png" style="max-height: 60vh;">
+	</section>
+	<section>
+		<h2>Main concepts - Topics & partitions</h2>
+		<ul>
+			<li>Records are kept in topics/partitions according to a retention policy</li>
+			<li>Records are not removed from topics/partitions after being read</li>
+			<li>Partitions can be spread across multiple running instances of Kafka</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Main concepts - Producers</h2>
+		<ul>
+			<li>Write records to topics/partitions</li>
+			<li>Responsible for choosing the partition to write to
+				<ul>
+					<li>Choice can be as simple as round-robin</li>
+					<li>Or based on some logic, for example dependant on the record key</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Main concepts - Consumers & groups</h2>
+		<ul>
+			<li>Consumers read records from topics/partitions</li>
+			<li>Consumers are grouped together using a name
+				<ul>
+					<li>Within a group, a single consumer reads a given record</li>
+					<li>Across groups, records can be read multiple times</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Main concepts - Consumers & groups</h2>
+		<img src="/assets/episode044/044-1-topics-and-consumer-groups.png" style="max-height: 60vh;">
+	</section>
+	<section>
+		<h2>Main concepts - Consumers & groups</h2>
+		<ul>
+			<li>Within a group, a consumer is exclusively responsible for one or more partitions
+			<li>Records from one partition always go to the same consumer instance</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Main concepts - Consumers & groups</h2>
+		<img src="/assets/episode044/044-2-partitions-and-consumer-groups.png" style="max-height: 60vh;">
+	</section>
+	<section>
+		<h2>Main concepts - Consumers & groups</h2>
+		<ul>
+			<li>Consumers keep track of what was read by storing the partition offset</li>
+			<li>Offset is kept in memory</li>
+			<li>Should be regularly persisted back to Kafka, in case of consumer failure</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Versus traditional queuing systems</h2>
+	</section>
+	<section>
+		<h2>Versus traditional queuing systems</h2>
+		<ul>
+			<li>To reiterate: Kafka is not a queueing system</li>
+			<li>Main difference: append-only log behavior</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Versus traditional queuing systems</h2>
+		<img src="/assets/episode044/044-3-message-queue.png" style="max-height: 60vh;">
+	</section>
+	<section>
+		<h2>Versus traditional queuing systems</h2>
+		<ul>
+			<li>Comparing some use cases
+				<ul>
+					<li>Events</li>
+					<li>Commands</li>
+					<li>Streaming</li>
+					<li>Connectors</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Versus traditional queuing systems</h2>
+		<ul>
+			<li>Other properties
+				<ul>
+					<li>Single record storage vs copied message on fan-out</li>
+					<li>Explicit parallelism via partitions - ordering guarantees</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Outro - Quick takeaways</h2>
+		<ul>
+			<li>Kafka can be thought of as a log, where producers append records to a topic/partition</li>
+			<li>Records are accessed with an offset within a topic's partition</li>
+			<li>Consumers do not take records off the topic, they read them, then advance their offset</li>
+			<li>Kafka is not a message queue (and also not an event store)</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Outro</h2>
+		<p>Hope it wasn't too boring 😅</p>
+	</section>
+</div>
